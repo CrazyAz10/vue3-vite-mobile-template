@@ -51,6 +51,9 @@ npm run lint
 ### 项目说明
 
     基础vue3 + vite 移动端解决方案框架
+        i18n 国际化语言切换功能
+        主题色切换功能
+        自适应750px范围内终端
 
 #### 目录结果说明
 
@@ -77,7 +80,7 @@ npm run lint
 
 #### 依赖
 
-    替换vuex 为 pinia >> 状态管理
+    pinia >> 状态管理
     register-service-worker >> 离线缓存
     src/utils/rem.ts >> 移动端适配解决方案
     axios >> 网络请求库
