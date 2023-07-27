@@ -1,0 +1,30 @@
+{
+  "id": "4185419",
+  "name": "vue3-vite-mobile-template",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "个人 vue3+vite 移动端解决方案模板项目",
+  "glyphs": [
+    {
+      "icon_id": "35165554",
+      "name": "menu菜单3",
+      "font_class": "menucaidan3",
+      "unicode": "e854",
+      "unicode_decimal": 59476
+    },
+    {
+      "icon_id": "20885024",
+      "name": "切换语言",
+      "font_class": "qiehuanyuyan",
+      "unicode": "e769",
+      "unicode_decimal": 59241
+    },
+    {
+      "icon_id": "28715065",
+      "name": "主题",
+      "font_class": "a-huaban2fuben9",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    }
+  ]
+}

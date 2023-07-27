@@ -1,0 +1,26 @@
+
+/** iconfont 图标库 **/
+@import '@/assets/fonts/iconfont/iconfont.css';
+
+
+.primary-font-color {
+  color: var(--primary-color);
+}
+
+.btn {
+  padding: 0 20px;
+  border: none;
+  background: #646464;
+  height: 38px;
+  border-radius: 19px;
+  line-height: 38px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+  &.primary-btn {
+    background: var(--primary-color);
+  }
+}

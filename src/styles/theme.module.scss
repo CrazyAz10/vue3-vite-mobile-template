@@ -1,0 +1,69 @@
+
+
+$--promary-color: #2f54eb;
+$--success-color: #13ce66;
+$--danger-color: #ff0000;
+$--error-color: #ff0000;
+$--warning-color: #ffba00;
+$--info-color: #ccc;
+
+/** normal theme **/
+$--normal-font-size: 14px;
+$--normal-border-width: 1px;
+$--normal-border-radius: 5px;
+
+/** light theme **/
+
+$--normal-font-color-light: #333;
+$--normal-deputy-font-color-light: #666;
+$--normal-border-color-light: #666;
+
+$--normal-background-color-light: #fff;
+$--normal-deputy-background-color-light: #fff;
+
+$--normal-shadow-color-light: rgba(157, 157, 157, 0.25);
+
+
+/** dark theme **/
+$--normal-font-color-dark: #fff;
+$--normal-deputy-font-color-dark: #999;
+$--normal-border-color-dark: #999;
+
+$--normal-background-color-dark: #202124;
+$--normal-deputy-background-color-dark: #1c1c1e;
+
+$--normal-shadow-color-dark: rgba(157, 157, 157, 0.25);
+
+/** export to js 向外暴露的主题配置 **/
+:export {
+    promary-color: $--promary-color;
+    success-color: $--success-color;
+    danger-color: $--danger-color;
+    error-color: $--error-color;
+    warning-color: $--warning-color;
+    info-color: $--info-color;
+    normal-font-size: $--normal-font-size;
+    normal-border-width: $--normal-border-width;
+    normal-border-radius: $--normal-border-radius;
+    light: {
+        normal-font-color: $--normal-font-color-light;
+        normal-deputy-font-color: $--normal-deputy-font-color-light;
+        normal-border-color: $--normal-border-color-light;
+
+        normal-background-color: $--normal-background-color-light;
+        normal-deputy-background-color: $--normal-deputy-background-color-light;
+
+        normal-shadow-color: $--normal-shadow-color-light;
+    }
+    dark: {
+        normal-font-color: $--normal-font-color-dark;
+        normal-deputy-font-color: $--normal-deputy-font-color-dark;
+        normal-border-color: $--normal-border-color-dark;
+
+        normal-background-color: $--normal-background-color-dark;
+        normal-deputy-background-color: $--normal-deputy-background-color-dark;
+
+        normal-shadow-color: $--normal-shadow-color-dark;
+
+    }
+}
