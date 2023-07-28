@@ -14,19 +14,10 @@
 <script lang="ts" setup name="layout">
 import AppMain from '@/layout/components/AppMain.vue'
 import NavBar from '@/layout/components/NavBar.vue'
-import config from '@/config'
 import useResize from '@/layout/hooks/useResize'
 useResize()
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { appStore } from '@/stores/appStore'
-onMounted(() => {
-  // 判断是否开启750宽度限制
-  if (config.mobileLimitWidth) {
-    let oldClass = document.body.getAttribute('class') || ''
-    oldClass = oldClass ? oldClass + ' limit-width-body' : 'limit-width-body'
-    document.body.setAttribute('class', oldClass)
-  }
-})
 const store = appStore()
 const device = computed(() => {
   return store.device

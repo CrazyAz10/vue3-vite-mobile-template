@@ -17,7 +17,7 @@
 // 限制750宽度后悬浮窗口也需要控制在750并悬浮剧中
 body.limit-width-body {
   margin: 0 auto;
-  max-width: 750px; /* px-to-viewport-ignore */
+  max-width: 750Px; /* px-to-viewport-ignore */
   .fixed-max-width-top-center{
     max-width: 750Px;
     left: 50%;

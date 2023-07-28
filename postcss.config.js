@@ -3,9 +3,9 @@
 module.exports = {
     plugins: {
         'postcss-pxtorem': {
-            viewportWidth: 750,
+            viewportWidth: 375,
             rootValue({ file }) {
-                return file.indexOf('vant') !== -1 ? 37.5 : 75;
+                return file.indexOf('vant') !== -1 ? 37.5 : 37.5;
               }, // 75表示750设计稿，37.5表示375设计稿
             unitPrecision: 6,
             propList: ["*"],

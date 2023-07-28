@@ -74,11 +74,7 @@ const setBodyThemeClass = (n:string) => {
   // 切换主题后修改body class 样式
   let class__: any = document.body.getAttribute('class')
   if (class__) {
-    if (n == 'dark') {
-      class__ = /light/.test(class__) ? class__.replace(/light/gm, n) : n + ' ' + class__
-    } else {
-      class__ = /dark/.test(class__) ? class__.replace(/dark/gm, n) : n + ' ' + class__
-    }
+    class__ = /(light)|(dark)/.test(class__) ? class__.replace(/(light)|(dark)/gm, n) : n + ' ' + class__
   } else {
     class__ = n
   }

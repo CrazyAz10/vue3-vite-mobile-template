@@ -10,6 +10,12 @@
         {{ item.children![0]!.meta!.title }}
         <!-- {{ $t(`menu.${ item.children![0]!.name }`) }} -->
       </li>
+      <li
+        :class="{ active: activeMenu === '/login' }"
+        @click="linkTo({ path: '/login' })"
+      >
+        登录
+      </li>
     </ul>
   </div>
 </template>
@@ -18,7 +24,8 @@
 
 import { menuRoutes } from '@/router'
 import { computed, ref } from 'vue'
-
+import { appStore } from '@/stores/appStore';
+const store = appStore()
 import { useRouter, useRoute } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
@@ -43,6 +50,7 @@ const activeMenu = computed(() => {
 // 路由跳转
 const linkTo = function (to:any) {
   router.push(to)
+  store.updateSidebarOpened(!store.sidebar.opened)
 }
 
 </script>
