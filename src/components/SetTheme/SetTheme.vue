@@ -28,7 +28,7 @@ let themeDark: any = [] // 暗色主题
 let show = ref(false)
 
 // 驼峰转‘-’拼接
-const toLine = (name) => {
+const toLine = (name:string) => {
   return name.replace(/([A-Z])/g, '-$1').toLowerCase()
 }
 
@@ -52,14 +52,13 @@ for (let i in themeScss) {
   }
 }
 // 切换主题
-const changeTheme = (theme) => {
+const changeTheme = (theme:string) => {
   store.updateTheme(theme)
 }
 // 编译主题
 const setTheme = () => {
   if (theme.value === 'light') {
     for (let item of themeLight) {
-      console.log(item)
       setCssVar(item.name, item.value)
     }
     store.updateTheme('light')
@@ -71,7 +70,7 @@ const setTheme = () => {
   }
 }
 // 修改body主题样式
-const setBodyThemeClass = (n) => {
+const setBodyThemeClass = (n:string) => {
   // 切换主题后修改body class 样式
   let class__: any = document.body.getAttribute('class')
   if (class__) {

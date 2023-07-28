@@ -85,6 +85,7 @@ npm run lint
     src/utils/rem.ts >> 移动端适配解决方案
     axios >> 网络请求库
     postcss-pxtorem >> 自动将px转换成rem单位
+    vant >> vant ui
     
 ### vsCode 插件使用
 

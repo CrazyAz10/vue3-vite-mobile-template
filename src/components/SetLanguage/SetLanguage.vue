@@ -8,8 +8,9 @@
             leave-active-class="animate__animated animate__fadeOut">
             <div v-if="show" class="slide-bar">
                 <ul>
-                    <li :class="{active: language=='cn'}" @click="handleSetLanguage('cn')">中文</li>
-                    <li :class="{active: language=='en'}" @click="handleSetLanguage('en')">English</li>
+                    <li :class="{active: language=='zh-CN'}" @click="handleSetLanguage('zh-CN')">中文</li>
+                    <li :class="{active: language=='zh-HK'}" @click="handleSetLanguage('zh-HK')">繁體</li>
+                    <li :class="{active: language=='en-US'}" @click="handleSetLanguage('en-US')">English</li>
                 </ul>
             </div>
         </transition>
@@ -18,13 +19,10 @@
 
 <script setup lang="ts" name="SetLanguage">
 import { ref, computed } from 'vue'
-// import { locale, mergeLocaleMessage } from 'vue-i18n'
-// import { requireLang, elementLang } from '@/i18n'
 import i18n from '@/i18n'
-// console.log(i18n.global)
+import { Locale } from 'vant'
+import { requireLang, vantLang } from '@/i18n'
 import { appStore } from '@/stores/appStore'
-// const instance = getCurrentInstance()
-// console.log(instance)
 const store = appStore()
 const show = ref(false)
 const language = computed(() => {
@@ -32,10 +30,11 @@ const language = computed(() => {
 })
 const handleSetLanguage = (lang: string) => {
     i18n.global.locale = lang
+    Locale.use(lang, Object.assign(requireLang(lang), vantLang[lang]))
+    i18n.global.mergeLocaleMessage(lang, Object.assign(requireLang(lang), vantLang[lang]))
     store.updateLanguage(lang)
     show.value = false
     // console.log(requireLang(lang))
-    // i18n.global.mergeLocaleMessage(lang, Object.assign(requireLang(lang), elementLang[lang]))
 }
 
 const shangeShow = () => {

@@ -4,7 +4,7 @@
       <div class="laft-nav-bar">
         <div class="logo" @click="linkTo({ path: '/' })">
           <img src="@/assets/logo.png" alt="" />
-          <span>YChat</span>
+          <span>CrazyAz</span>
         </div>
       </div>
       <div v-if="device == 'desktop'" class="right-nav-bar">

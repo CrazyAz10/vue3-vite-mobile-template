@@ -1,6 +1,5 @@
 import { ZRequest } from './request'  
-import { BASE_URL, TIMEOUT } from './request/config'  
-console.log(BASE_URL)
+import { BASE_URL, TIMEOUT } from './request/config'
 const zqRequest = new ZRequest({  
     baseURL: BASE_URL,  
     timeout: TIMEOUT,  

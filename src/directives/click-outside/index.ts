@@ -1,7 +1,7 @@
 export default {
   created() {},
   // 初始化指令
-  mounted(el: any, binding: any, vnode: any) {
+  mounted(el: any, binding: any) {
     function clickHandler(e: any) {
       // 这里判断点击的元素是否是本身，是本身，则返回
       if (el.contains(e.target)) {

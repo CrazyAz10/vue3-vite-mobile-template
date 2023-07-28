@@ -10,12 +10,18 @@ import '@/plugins/wow.ts'
 // import 'wowjs/css/libs/animate.css'
 import 'animate.css'
 import 'animate.css/animate.compat.css'
+// vant 
+import 'vant/lib/index.css'
 
 // 全局基础样式
 import '@/styles/base.scss'
 import '@/styles/azUi.scss' // Az的ui样式库
 
 const app = createApp(App)
+
+// vant ui
+import useVant from '@/plugins/vant'
+useVant(app)
 
 // 路由守卫
 import '@/permission.ts'

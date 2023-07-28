@@ -1,7 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "type.d.ts",
+    "vite-env.d.ts",
     "src/**/*",
     "src/**/*.vue",
     "shims-vue.d.ts"

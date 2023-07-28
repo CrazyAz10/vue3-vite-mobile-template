@@ -1,6 +1,36 @@
+:root {
+  /* 默认主题样式 */
+  --primary-color: #165dff;
+  /* 默认字体颜色 */
+  --normal-font-color: #333;
+  /* 默认字体大小 */
+  --normal-font-size: 14px;
+  /* 默认字体副色 */
+  --normal-deputy-font-color: #666;
+
+  /* 默认边框大小颜色 */
+  --normal-border-width: 1px;
+  --normal-border-color: #666;
+  --normal-border-radius: 5px;
+
+  /* 默认背景色 */
+  --normal-background-color: #fff;
+  /* 第二背景色 */
+  --normal-deputy-background-color: #fff;
+
+  /* 默认阴影颜色 */
+  --normal-shadow-color: rgba(157, 157, 157, 0.25);
+
+  /**vant 主题修改**/
+  --van-primary-color: #165dff;
+  // --van-success-color: #165dff;
+  // --van-default-color: #165dff;
+  // --van-warning-color: #165dff;
+  // --van-danger-color: #165dff;
+}
 
 
-$--promary-color: #2f54eb;
+$--promary-color: #165dff;
 $--success-color: #13ce66;
 $--danger-color: #ff0000;
 $--error-color: #ff0000;
@@ -23,7 +53,6 @@ $--normal-deputy-background-color-light: #fff;
 
 $--normal-shadow-color-light: rgba(157, 157, 157, 0.25);
 
-
 /** dark theme **/
 $--normal-font-color-dark: #fff;
 $--normal-deputy-font-color-dark: #999;
@@ -36,34 +65,33 @@ $--normal-shadow-color-dark: rgba(157, 157, 157, 0.25);
 
 /** export to js 向外暴露的主题配置 **/
 :export {
-    promary-color: $--promary-color;
-    success-color: $--success-color;
-    danger-color: $--danger-color;
-    error-color: $--error-color;
-    warning-color: $--warning-color;
-    info-color: $--info-color;
-    normal-font-size: $--normal-font-size;
-    normal-border-width: $--normal-border-width;
-    normal-border-radius: $--normal-border-radius;
-    light: {
-        normal-font-color: $--normal-font-color-light;
-        normal-deputy-font-color: $--normal-deputy-font-color-light;
-        normal-border-color: $--normal-border-color-light;
+  promary-color: $--promary-color;
+  success-color: $--success-color;
+  danger-color: $--danger-color;
+  error-color: $--error-color;
+  warning-color: $--warning-color;
+  info-color: $--info-color;
+  normal-font-size: $--normal-font-size;
+  normal-border-width: $--normal-border-width;
+  normal-border-radius: $--normal-border-radius;
+  light: {
+    normal-font-color: $--normal-font-color-light;
+    normal-deputy-font-color: $--normal-deputy-font-color-light;
+    normal-border-color: $--normal-border-color-light;
 
-        normal-background-color: $--normal-background-color-light;
-        normal-deputy-background-color: $--normal-deputy-background-color-light;
+    normal-background-color: $--normal-background-color-light;
+    normal-deputy-background-color: $--normal-deputy-background-color-light;
 
-        normal-shadow-color: $--normal-shadow-color-light;
-    }
-    dark: {
-        normal-font-color: $--normal-font-color-dark;
-        normal-deputy-font-color: $--normal-deputy-font-color-dark;
-        normal-border-color: $--normal-border-color-dark;
+    normal-shadow-color: $--normal-shadow-color-light;
+  }
+  dark: {
+    normal-font-color: $--normal-font-color-dark;
+    normal-deputy-font-color: $--normal-deputy-font-color-dark;
+    normal-border-color: $--normal-border-color-dark;
 
-        normal-background-color: $--normal-background-color-dark;
-        normal-deputy-background-color: $--normal-deputy-background-color-dark;
+    normal-background-color: $--normal-background-color-dark;
+    normal-deputy-background-color: $--normal-deputy-background-color-dark;
 
-        normal-shadow-color: $--normal-shadow-color-dark;
-
-    }
+    normal-shadow-color: $--normal-shadow-color-dark;
+  }
 }

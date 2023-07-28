@@ -7,12 +7,17 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    __VUE_I18N_FULL_INSTALL__: true,
+    __VUE_I18N_LEGACY_API__: true,
+    __INTLIFY_PROD_DEVTOOLS__: false
+  },
   // 代理设置
-  // server: { 
+  // server: {
   //   proxy: {
   //     '/api': {
-  //       target: 'http://127.0.0.1:3000/api', 
-  //       rewrite: (path) => path.replace(/^\/api/, '') // 不可省略 
+  //       target: 'http://127.0.0.1:3000/api',
+  //       rewrite: (path) => path.replace(/^\/api/, '') // 不可省略
   //     }
   //   }
   // },
