@@ -15,7 +15,7 @@ export const menuRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        name: 'yChatHome',
+        name: 'Home',
         component: () => import('@/views/index.vue'),
         meta: {
           title: '首页',
@@ -30,7 +30,7 @@ export const menuRoutes: Array<RouteRecordRaw> = [
 const conventionRoutes: Array<RouteRecordRaw> = [
   {
     path: '/login',
-    name: 'login',
+    name: 'LoginPage',
     component: () => import('@/views/login/index.vue'),
     meta: {
       title: '登录',
@@ -38,12 +38,29 @@ const conventionRoutes: Array<RouteRecordRaw> = [
   },
   {
     path: '/register',
-    name: 'register',
+    name: 'RegisterPage',
     component: () => import('@/views/register/index.vue'),
     meta: {
       title: '注册',
     }
   },
+  {
+    path: '/forgotPassword',
+    name: 'ForgotPassword',
+    component: () => import('@/views/forgotPassword/index.vue'),
+    meta: {
+      title: '注册',
+    }
+  },
+  {
+    path: '/user',
+    name: 'UserPage',
+    component: () => import('@/views/user/index.vue'),
+    meta: {
+      title: '注册',
+    }
+  },
+  
 ]
 
 const routes: Array<RouteRecordRaw> = [ ...conventionRoutes, ...menuRoutes]

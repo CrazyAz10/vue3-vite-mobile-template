@@ -56,7 +56,7 @@ const openSlider = function () {
   align-items: center;
 
   .menu-icon {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 </style>

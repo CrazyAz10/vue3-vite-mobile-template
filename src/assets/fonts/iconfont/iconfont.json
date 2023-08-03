@@ -6,6 +6,20 @@
   "description": "个人 vue3+vite 移动端解决方案模板项目",
   "glyphs": [
     {
+      "icon_id": "8361844",
+      "name": "眼睛3",
+      "font_class": "yanjing",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "8361861",
+      "name": "眼睛4",
+      "font_class": "yanjing1",
+      "unicode": "e6d1",
+      "unicode_decimal": 59089
+    },
+    {
       "icon_id": "35165554",
       "name": "menu菜单3",
       "font_class": "menucaidan3",

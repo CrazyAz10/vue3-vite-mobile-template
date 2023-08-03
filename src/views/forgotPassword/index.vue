@@ -1,6 +1,6 @@
 <template>
-    <top-big-back title="注册" />
-    <div class="register">
+    <top-big-back title="忘记密码" />
+    <div class="forgot-password">
         <van-form @failed="onFailed" @submit="onSubmit">
             <van-cell-group inset>
                 <!-- 通过 pattern 进行正则校验 -->
@@ -32,9 +32,9 @@
                 <van-field
                     v-model="formData.password"
                     name="password"
-                    placeholder="请设置密码"
+                    placeholder="请设置新密码"
                     :rules="[
-                        { required: true, message: '请设置密码' },
+                        { required: true, message: '请设置新密码' },
                         {
                             validator: verifyPassword,
                             message: '密码必须包含有大小写字母和数字，且长度为6-16位'
@@ -45,16 +45,16 @@
                         <AzInput
                             v-model="formData.password"
                             type="password"
-                            placeholder="请设置密码"
+                            placeholder="请设置新密码"
                         />
                     </template>
                 </van-field>
                 <van-field
                     v-model="formData.confirmPassword"
                     name="confirmPassword"
-                    placeholder="请确认密码"
+                    placeholder="请确认新密码"
                     :rules="[
-                        { required: true, message: '请确认密码' },
+                        { required: true, message: '请确认新密码' },
                         { validator: verifyConfirmPassword, message: '确认密码与设置密码不一致！' }
                     ]"
                 >
@@ -62,7 +62,7 @@
                         <AzInput
                             v-model="formData.confirmPassword"
                             type="password"
-                            placeholder="请确认密码"
+                            placeholder="请确认新密码"
                         />
                     </template>
                 </van-field>
@@ -77,7 +77,7 @@
     </div>
 </template>
 
-<script lang="ts" name="RegisterPage" setup>
+<script lang="ts" name="ForgotPassword" setup>
 import { ref } from 'vue'
 import { showToast } from 'vant'
 import TopBigBack from '@/components/TopBigBack/TopBigBack.vue'
@@ -123,7 +123,7 @@ const onSubmit = () => {
 </script>
 
 <style lang="scss" scoped>
-.register {
+.forgot-password {
     // height: 100vh;
     padding: 20px 0;
     .tips-chunk {

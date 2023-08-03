@@ -10,7 +10,7 @@
 
   /* 默认边框大小颜色 */
   --normal-border-width: 1px;
-  --normal-border-color: #666;
+  --normal-border-color: #d1d1d1;
   --normal-border-radius: 5px;
 
   /* 默认背景色 */
@@ -29,7 +29,6 @@
   // --van-danger-color: #165dff;
 }
 
-
 $--promary-color: #165dff;
 $--success-color: #13ce66;
 $--danger-color: #ff0000;
@@ -46,7 +45,7 @@ $--normal-border-radius: 5px;
 
 $--normal-font-color-light: #333;
 $--normal-deputy-font-color-light: #666;
-$--normal-border-color-light: #666;
+$--normal-border-color-light: #d1d1d1;
 
 $--normal-background-color-light: #fff;
 $--normal-deputy-background-color-light: #fff;
@@ -56,7 +55,7 @@ $--normal-shadow-color-light: rgba(157, 157, 157, 0.25);
 /** dark theme **/
 $--normal-font-color-dark: #fff;
 $--normal-deputy-font-color-dark: #999;
-$--normal-border-color-dark: #999;
+$--normal-border-color-dark: #D1D1D1;
 
 $--normal-background-color-dark: #202124;
 $--normal-deputy-background-color-dark: #1c1c1e;

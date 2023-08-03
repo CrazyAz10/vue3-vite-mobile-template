@@ -1,18 +1,23 @@
 <template>
-  <van-config-provider :theme="theme" size="small">
-    <Transition
+  <keep-alive>
+    <van-config-provider :theme="theme" size="small">
+      <!-- <Transition
       mode="out-in"
       enter-active-class="animate__animated animate__slideInRight"
       leave-active-class="animate__animated animate__slideOutLeft"
-    >
+    > -->
       <router-view />
-    </Transition>
-  </van-config-provider>
+      <!-- </Transition> -->
+    </van-config-provider>
+  </keep-alive>
 </template>
 <script lang="ts" setup>
 import config from '@/config'
 import { computed, onMounted } from 'vue'
 import { appStore } from './stores/appStore'
+import setTheme from '@/components/SetTheme/hooks/setTheme'
+// 主题色监听
+setTheme()
 const store = appStore()
 const theme = computed(() => {
   return store.theme

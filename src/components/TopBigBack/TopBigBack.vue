@@ -13,7 +13,6 @@
 <script lang="ts" name="topBigBack" setup>
 import { useRouter } from 'vue-router'
 const router = useRouter()
-import { defineProps } from 'vue'
 // props
 defineProps({
   title: {
@@ -22,7 +21,7 @@ defineProps({
   },
   tips: {
     type: String,
-    default: '欢迎加入49网址大全'
+    default: '欢迎使用啊佐vue3+vite模板'
   }
 })
 // 返回按钮

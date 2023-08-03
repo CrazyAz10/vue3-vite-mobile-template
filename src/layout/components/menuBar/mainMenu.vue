@@ -16,6 +16,18 @@
       >
         登录
       </li>
+      <li
+        :class="{ active: activeMenu === '/register' }"
+        @click="linkTo({ path: '/register' })"
+      >
+        注册
+      </li>
+      <li
+        :class="{ active: activeMenu === '/user' }"
+        @click="linkTo({ path: '/user' })"
+      >
+        我的
+      </li>
     </ul>
   </div>
 </template>

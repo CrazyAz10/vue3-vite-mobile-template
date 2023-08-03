@@ -1,5 +1,6 @@
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
+import { showFailToast } from 'vant';
 import type { ZRequestInterceptor, ZRequestConfig } from '@/service/request/type.d.ts'
 export class ZRequest {
   instance: AxiosInstance // axios实例
@@ -30,13 +31,16 @@ export class ZRequest {
         if (res.data.code !== 200) {
           // 接口返回提示
           console.log(res.data.msg)
+          showFailToast(res.data.msg)
         }
         return res.data
       },
       (err) => {
-        console.log(err.response)
         if (err.response.state === 404) {
+          showFailToast('接口未找到')
           console.log('接口未找到')
+        } else {
+          showFailToast('服务器出错！')
         }
         return err
       }

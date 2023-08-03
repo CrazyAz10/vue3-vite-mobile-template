@@ -18,74 +18,21 @@
 </template>
 
 <script lang="ts" name="SetTheme" setup>
-import { ref, watch, computed } from 'vue'
-import { setCssVar } from '@/styles/setTheme'
+import { ref, computed } from 'vue'
 import { appStore } from '@/stores/appStore'
 const store = appStore()
-import themeScss from '@/styles/theme.module.scss'
-let themeLight: any = [] // 高亮主题
-let themeDark: any = [] // 暗色主题
 let show = ref(false)
-
-// 驼峰转‘-’拼接
-const toLine = (name:string) => {
-  return name.replace(/([A-Z])/g, '-$1').toLowerCase()
-}
 
 const theme = computed(() => {
   return JSON.parse(JSON.stringify(store.theme))
 })
 
-// 初始化 将scss 主题资源转对象存储
-for (let i in themeScss) {
-  let class_ = toLine(i.replace(/(^dark\-)|(^light\-)/, ''))
-  if (/^light/.test(i)) {
-    themeLight.push({
-      name: `--${class_}`,
-      value: themeScss[i]
-    })
-  } else {
-    themeDark.push({
-      name: `--${class_}`,
-      value: themeScss[i]
-    })
-  }
-}
 // 切换主题
 const changeTheme = (theme:string) => {
   store.updateTheme(theme)
+  show.value = false
 }
-// 编译主题
-const setTheme = () => {
-  if (theme.value === 'light') {
-    for (let item of themeLight) {
-      setCssVar(item.name, item.value)
-    }
-    store.updateTheme('light')
-  } else {
-    for (let item of themeDark) {
-      setCssVar(item.name, item.value)
-    }
-    store.updateTheme('dark')
-  }
-}
-// 修改body主题样式
-const setBodyThemeClass = (n:string) => {
-  // 切换主题后修改body class 样式
-  let class__: any = document.body.getAttribute('class')
-  if (class__) {
-    class__ = /(light)|(dark)/.test(class__) ? class__.replace(/(light)|(dark)/gm, n) : n + ' ' + class__
-  } else {
-    class__ = n
-  }
-  document.body.setAttribute('class', class__)
-}
-setTheme()
-setBodyThemeClass(theme.value)
-watch(theme, (n) => {
-  setTheme()
-  setBodyThemeClass(n)
-})
+
 </script>
 
 <style lang="scss" scoped>
@@ -95,7 +42,7 @@ watch(theme, (n) => {
 }
 .az-switch {
   i{
-    font-size: 35px;
+    font-size: 26px;
   }
 }
 .slide-bar {

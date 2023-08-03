@@ -47,7 +47,7 @@ const shangeShow = () => {
 .set-language {
     position: relative;
     .icon-qiehuanyuyan{
-        font-size: 35px;
+        font-size: 26px;
     }
     .slide-bar {
         position: absolute;
