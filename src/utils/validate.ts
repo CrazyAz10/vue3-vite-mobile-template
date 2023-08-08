@@ -1,7 +1,7 @@
 // 验证手机号码
-export function isPhoneNumber(phoneNumber: string) {
+export function isPhoneNumber(telephone: string) {
     const reg = /^1[0-9]{10}$/
-    return reg.test(phoneNumber)
+    return reg.test(telephone)
 }
 
 // 验证密码 至少需要(大小写字母+数字 且在6-18个字符范围)可通过验证；也可由大小写字母+数字+特殊字符三种字符混合组成

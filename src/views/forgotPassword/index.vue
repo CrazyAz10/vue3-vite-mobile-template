@@ -1,18 +1,23 @@
 <template>
-    <top-big-back title="忘记密码" />
+    <top-big-back title="忘记密码">
+        <div class="top-back-other">
+            <p class="title">忘记密码</p>
+            <p class="tips">欢迎使用啊佐vue3+vite模板</p>
+        </div>
+    </top-big-back>
     <div class="forgot-password">
         <van-form @failed="onFailed" @submit="onSubmit">
             <van-cell-group inset>
                 <!-- 通过 pattern 进行正则校验 -->
                 <van-field
-                    v-model="formData.phoneNumber"
-                    name="phoneNumber"
+                    v-model="formData.phone"
+                    name="phone"
                     placeholder="请输入手机号码"
                     :rules="[{ validator: isPhoneNumber, message: '请输入正确的手机号码' }]"
                 >
                     <template #input>
                         <PhoneNumberInput
-                            v-model="formData.phoneNumber"
+                            v-model="formData.phone"
                             v-model:prefix="formData.prefix"
                             @sendCode="sendCode"
                         />
@@ -88,7 +93,7 @@ import AzInput from '@/components/AzInput/AzInput.vue'
 // 表单数据
 const formData = ref({
     prefix: '86',
-    phoneNumber: '',
+    phone: '',
     code: '',
     password: '',
     confirmPassword: ''
@@ -96,7 +101,7 @@ const formData = ref({
 
 // 发送验证码
 const sendCode = (fn: any) => {
-    if (!isPhoneNumber(formData.value.phoneNumber)) {
+    if (!isPhoneNumber(formData.value.phone)) {
         showToast('请先输入有效的电话号码！')
         fn(false)
         return
@@ -123,6 +128,19 @@ const onSubmit = () => {
 </script>
 
 <style lang="scss" scoped>
+.top-back-other{
+    .title {
+        margin-top: 20px;
+        padding-left: 10px;
+        font-size: 16px;
+    }
+    .tips {
+        margin-top: 17px;
+        padding-left: 10px;
+        font-size: 12px;
+        color: #fbfbfb;
+    }
+}
 .forgot-password {
     // height: 100vh;
     padding: 20px 0;

@@ -19,17 +19,17 @@
 
 <script lang="ts" name="SetTheme" setup>
 import { ref, computed } from 'vue'
-import { appStore } from '@/stores/appStore'
-const store = appStore()
+import { useAppStoreHook } from '@/store/modules/app'
+const appStore = useAppStoreHook()
 let show = ref(false)
 
 const theme = computed(() => {
-  return JSON.parse(JSON.stringify(store.theme))
+  return JSON.parse(JSON.stringify(appStore.theme))
 })
 
 // 切换主题
 const changeTheme = (theme:string) => {
-  store.updateTheme(theme)
+  appStore.updateTheme(theme)
   show.value = false
 }
 

@@ -12,24 +12,23 @@
 
 <script setup name="miniMenu" lang="ts">
 import mainMenu from '@/layout/components/menuBar/mainMenu.vue'
-import { appStore } from '@/stores/appStore'
+import { useAppStoreHook } from '@/store/modules/app'
+const appStore = useAppStoreHook()
 import { computed } from 'vue'
-
-const store = appStore()
 
 // 迷你菜单展开状态
 const sliderOpend = computed(() => {
-  return store.sidebar.opened
+  return appStore.sidebar.opened
 })
 
 // 关闭迷你菜单
 const closeSlider = function () {
-  store.updateSidebarOpened(false)
+  appStore.updateSidebarOpened(false)
 }
 
 // 展开迷你菜单
 const openSlider = function () {
-  store.updateSidebarOpened(!store.sidebar.opened)
+  appStore.updateSidebarOpened(!appStore.sidebar.opened)
 }
 </script>
 

@@ -3,8 +3,8 @@
     <div class="nav-bar container-box">
       <div class="laft-nav-bar">
         <div class="logo" @click="linkTo({ path: '/' })">
-          <img src="@/assets/logo.png" alt="" />
-          <span>CrazyAz</span>
+          <h2>CrazyAz</h2>
+          <span>azlll.com</span>
         </div>
       </div>
       <div v-if="device == 'desktop'" class="right-nav-bar">
@@ -30,7 +30,7 @@ import { computed } from 'vue'
 import mainMenu from '@/layout/components/menuBar/mainMenu.vue'
 import miniMenu from '@/layout/components/menuBar/miniMenu.vue'
 import SetLanguage from '@/components/SetLanguage/SetLanguage.vue'
-import { appStore } from '@/stores/appStore'
+import { useAppStoreHook } from '@/store/modules/app'
 import { useRouter } from 'vue-router'
 import SetTheme from '@/components/SetTheme/SetTheme.vue'
 export default {
@@ -42,15 +42,15 @@ export default {
     SetTheme
   },
   setup() {
-    const store = appStore()
+    const appStore = useAppStoreHook()
     /***** computed */
     // 终端类型
     const device = computed(() => {
-      return store.device
+      return appStore.device
     })
     // 迷你菜单展开状态
     const sliderOpend = computed(() => {
-      return store.sidebar.opened
+      return appStore.sidebar.opened
     })
     /** computed ****/
     const router = useRouter()
@@ -77,17 +77,11 @@ export default {
     display: flex;
     align-items: center;
     .logo {
-      display: flex;
-      align-items: center;
       cursor: pointer;
-
-      img {
-        height: 30px;
-        margin-right: 10px;
+      span{
+        color: #54577A;
+        font-size: 14px;
       }
-
-      font-weight: bold;
-      font-size: 18px;
     }
   }
 
@@ -95,7 +89,15 @@ export default {
     display: flex;
     align-items: center;
     .item{
-      margin-left: 20px;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 2px rgba(0,0,0,.2);
     }
     .menu-icon {
       height: 30px;

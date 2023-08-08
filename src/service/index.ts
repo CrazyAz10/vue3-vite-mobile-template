@@ -6,6 +6,7 @@ const zqRequest = new ZRequest({
     interceptors: {  
         requestInterceptor: (config) => {  
             // const token = localCache.getCache('token')  
+            // const whiteList = ['/user/login', '/user/register']
             const token = localStorage.getItem('token')
             if (token) {  
                 if (config && config.headers) {  

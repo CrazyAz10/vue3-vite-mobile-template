@@ -6,6 +6,7 @@
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
+import userRouter from './modules/user'
 
 export const menuRoutes: Array<RouteRecordRaw> = [
   {
@@ -34,6 +35,7 @@ const conventionRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/views/login/index.vue'),
     meta: {
       title: '登录',
+      needToken: false
     }
   },
   {
@@ -49,17 +51,10 @@ const conventionRoutes: Array<RouteRecordRaw> = [
     name: 'ForgotPassword',
     component: () => import('@/views/forgotPassword/index.vue'),
     meta: {
-      title: '注册',
+      title: '忘记密码',
     }
   },
-  {
-    path: '/user',
-    name: 'UserPage',
-    component: () => import('@/views/user/index.vue'),
-    meta: {
-      title: '注册',
-    }
-  },
+  ...userRouter
   
 ]
 

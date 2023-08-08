@@ -14,13 +14,13 @@
 <script lang="ts" setup>
 import config from '@/config'
 import { computed, onMounted } from 'vue'
-import { appStore } from './stores/appStore'
+import { useAppStoreHook } from './store/modules/app'
 import setTheme from '@/components/SetTheme/hooks/setTheme'
 // 主题色监听
 setTheme()
-const store = appStore()
+const appStore = useAppStoreHook()
 const theme = computed(() => {
-  return store.theme
+  return appStore.theme
 })
 onMounted(() => {
   // 判断是否开启750宽度限制

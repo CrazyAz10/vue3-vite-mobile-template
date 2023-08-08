@@ -35,19 +35,20 @@
 </template>
 
 <script lang="ts" name="Home" setup>
-import { appStore } from '@/stores/appStore'
+import { useAppStoreHook } from '@/store/modules/app'
+
 import { ref, computed, onMounted } from 'vue'
-import { testRequest } from '@/api/main'
+// import { testRequest } from '@/api/main'
 // mounted
 onMounted(() => {
-    testRequest({
-        userName: 'crazyAz'
-    })
+    // testRequest({
+    //     userName: 'crazyAz'
+    // })
 })
-const store = appStore()
+const appStore = useAppStoreHook()
 // 终端类型
 const device = computed(() => {
-    return store.device
+    return appStore.device
 })
 
 const currentPage = ref(1)

@@ -1,10 +1,10 @@
 import clickOutside from '@/directives/click-outside'
-import lazyLoad from '@/directives/lazyLoad'
+// import lazyLoad from '@/directives/lazyLoad'
 import copy from './copy'
 const directives: any = {
   copy,
   clickOutside,
-  lazyLoad
+  // lazyLoad
 }
 export default {
   install(Vue: any) {

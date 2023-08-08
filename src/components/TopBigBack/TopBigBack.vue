@@ -4,9 +4,9 @@
       <span class="back-btn" @click="goBack">
         <van-icon name="arrow-left" />
       </span>
+      <span class="title">{{ title }}</span>
     </div>
-    <p class="title">{{ title }}</p>
-    <p class="tips">{{ tips }}</p>
+    <slot></slot>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ const router = useRouter()
 defineProps({
   title: {
     type: String,
-    default: '注册'
+    default: ''
   },
   tips: {
     type: String,
@@ -37,23 +37,19 @@ const goBack = () => {
   border-radius: 0 0 5px 5px;
   color: #fff;
   .back {
+    display: flex;
+    align-items: center;
     .back-btn {
       display: inline-block;
       padding: 10px 5px;
       font-size: 20px;
       font-weight: bold;
     }
-  }
-  .title {
-    margin-top: 20px;
-    padding-left: 10px;
-    font-size: 16px;
-  }
-  .tips {
-    margin-top: 17px;
-    padding-left: 10px;
-    font-size: 12px;
-    color: #fbfbfb;
+    .title{
+      font-size: 16px;
+      line-height: 1em;
+      margin-left: 5px;
+    }
   }
 }
 </style>

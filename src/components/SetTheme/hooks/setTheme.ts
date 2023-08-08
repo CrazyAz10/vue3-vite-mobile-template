@@ -1,9 +1,9 @@
 import { watch, computed } from 'vue'
 import { setCssVar } from '@/styles/setTheme'
-import { appStore } from '@/stores/appStore'
+import { useAppStoreHook } from '@/store/modules/app'
 import themeScss from '@/styles/theme.module.scss'
 export default function () {
-  const store = appStore()
+  const appStore = useAppStoreHook()
   const themeLight: any = [] // 高亮主题
   const themeDark: any = [] // 暗色主题
 
@@ -13,7 +13,7 @@ export default function () {
   }
 
   const theme = computed(() => {
-    return JSON.parse(JSON.stringify(store.theme))
+    return JSON.parse(JSON.stringify(appStore.theme))
   })
 
   // 初始化 将scss 主题资源转对象存储
@@ -38,12 +38,12 @@ export default function () {
       for (const item of themeLight) {
         setCssVar(item.name, item.value)
       }
-      store.updateTheme('light')
+      appStore.updateTheme('light')
     } else {
       for (const item of themeDark) {
         setCssVar(item.name, item.value)
       }
-      store.updateTheme('dark')
+      appStore.updateTheme('dark')
     }
   }
 

@@ -17,10 +17,10 @@ import NavBar from '@/layout/components/NavBar.vue'
 import useResize from '@/layout/hooks/useResize'
 useResize()
 import { computed } from 'vue'
-import { appStore } from '@/stores/appStore'
-const store = appStore()
+import { useAppStoreHook } from '@/store/modules/app'
+const appStore = useAppStoreHook()
 const device = computed(() => {
-  return store.device
+  return appStore.device
 })
 
 </script>

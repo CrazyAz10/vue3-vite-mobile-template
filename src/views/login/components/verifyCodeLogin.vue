@@ -3,14 +3,14 @@
         <van-cell-group inset>
             <!-- 通过 pattern 进行正则校验 -->
             <van-field
-                v-model="formData.phoneNumber"
-                name="phoneNumber"
+                v-model="formData.phone"
+                name="phone"
                 placeholder="请输入手机号码"
                 :rules="[{ validator: isPhoneNumber, message: '请输入正确的手机号码' }]"
             >
                 <template #input>
                     <PhoneNumberInput
-                        v-model="formData.phoneNumber"
+                        v-model="formData.phone"
                         v-model:prefix="formData.prefix"
                         @sendCode="sendCode"
                     />
@@ -36,21 +36,28 @@
 
 <script lang="ts" name="VerifyCodeLogin" setup>
 import { ref } from 'vue'
-import { showToast } from 'vant'
+import { useRouter } from 'vue-router'
+import { showToast, showSuccessToast } from 'vant'
 import PhoneNumberInput from '@/components/PhoneNumberInput/PhoneNumberInput.vue'
 import { isPhoneNumber } from '@/utils/validate'
+import { login } from '@/api/user'
 import AzInput from '@/components/AzInput/AzInput.vue'
+import { useUserStoreHook } from '@/store/modules/user'
+
+const router = useRouter()
+const userStore = useUserStoreHook()
 
 // 表单数据
 const formData = ref({
+    loginWay: 1,
     prefix: '86',
-    phoneNumber: '',
+    phone: '',
     code: ''
 })
 
 // 发送验证码
 const sendCode = (fn: any) => {
-    if (!isPhoneNumber(formData.value.phoneNumber)) {
+    if (!isPhoneNumber(formData.value.phone)) {
         showToast('请先输入有效的电话号码！')
         fn(false)
         return
@@ -67,7 +74,24 @@ const onFailed = (errorInfo: any) => {
 
 // 提交表单
 const onSubmit = () => {
-    showToast('表单验证通过！')
+    const data = {
+        loginWay: formData.value.loginWay,
+        prefix: formData.value.prefix,
+        phone: formData.value.phone,
+        code: formData.value.code,
+    }
+    login(data)
+    .then(res => {
+        if (res.code === 200) {
+            showSuccessToast('登录成功！')
+            userStore.updateToken(res.data.token)
+            userStore.updateUserInfo(res.data.user)
+            router.replace({
+                path: '/'
+            })
+
+        }
+    })
 }
 </script>
 

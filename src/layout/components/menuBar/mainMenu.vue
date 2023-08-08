@@ -36,8 +36,8 @@
 
 import { menuRoutes } from '@/router'
 import { computed, ref } from 'vue'
-import { appStore } from '@/stores/appStore';
-const store = appStore()
+import { useAppStoreHook } from '@/store/modules/app'
+const appStore = useAppStoreHook()
 import { useRouter, useRoute } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
@@ -62,7 +62,7 @@ const activeMenu = computed(() => {
 // 路由跳转
 const linkTo = function (to:any) {
   router.push(to)
-  store.updateSidebarOpened(!store.sidebar.opened)
+  appStore.updateSidebarOpened(!appStore.sidebar.opened)
 }
 
 </script>

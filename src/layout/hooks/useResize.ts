@@ -5,17 +5,17 @@
  */
 
 import { watch, computed, onBeforeMount, onBeforeUnmount, onMounted } from 'vue'
-import { appStore } from '@/stores/appStore.ts'
+import { useAppStoreHook } from '@/store/modules/app'
 export default function () {
   const { body } = document
   const WIDTH = 992 // refer to Bootstrap's responsive design
-  const store = appStore()
+  const appStore = useAppStoreHook()
   const device = computed(() => {
-    return store.device
+    return appStore.device
   })
 
   const sidebar: any = computed(() => {
-    return store.sidebar
+    return appStore.sidebar
   })
 
   const $_isMobile = function () {
@@ -26,18 +26,18 @@ export default function () {
   const $_resizeHandler = function () {
     if (!document.hidden) {
       const isMobile = $_isMobile()
-      store.updateDevice(isMobile ? 'mobile' : 'desktop')
-      store.setFontSize()
+      appStore.updateDevice(isMobile ? 'mobile' : 'desktop')
+      appStore.setFontSize()
 
       if (isMobile) {
-        store.updateSidebarOpened(false)
+        appStore.updateSidebarOpened(false)
       }
     }
   }
 
   watch(device, (device) => {
     if (device === 'mobile' && sidebar.value.opened) {
-      store.updateSidebarOpened(false)
+      appStore.updateSidebarOpened(false)
     }
   })
 
@@ -52,10 +52,10 @@ export default function () {
   onMounted(() => {
     const isMobile = $_isMobile()
     if (isMobile) {
-      store.updateDevice(isMobile ? 'mobile' : 'desktop')
-      store.updateSidebarOpened(false)
+      appStore.updateDevice(isMobile ? 'mobile' : 'desktop')
+      appStore.updateSidebarOpened(false)
     }
     // 修改主题字体大小
-    store.setFontSize()
+    appStore.setFontSize()
   })
 }

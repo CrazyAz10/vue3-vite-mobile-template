@@ -1,18 +1,23 @@
 <template>
-    <top-big-back title="注册" />
+    <top-big-back >
+        <div class="top-back-other">
+            <p class="title">注册</p>
+            <p class="tips">欢迎使用啊佐vue3+vite模板</p>
+        </div>
+    </top-big-back>
     <div class="register">
         <van-form @failed="onFailed" @submit="onSubmit">
             <van-cell-group inset>
                 <!-- 通过 pattern 进行正则校验 -->
                 <van-field
-                    v-model="formData.phoneNumber"
-                    name="phoneNumber"
+                    v-model="formData.phone"
+                    name="phone"
                     placeholder="请输入手机号码"
                     :rules="[{ validator: isPhoneNumber, message: '请输入正确的手机号码' }]"
                 >
                     <template #input>
                         <PhoneNumberInput
-                            v-model="formData.phoneNumber"
+                            v-model="formData.phone"
                             v-model:prefix="formData.prefix"
                             @sendCode="sendCode"
                         />
@@ -79,16 +84,19 @@
 
 <script lang="ts" name="RegisterPage" setup>
 import { ref } from 'vue'
-import { showToast } from 'vant'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+import md5 from 'js-md5'
+import { showToast, showSuccessToast, showFailToast  } from 'vant'
 import TopBigBack from '@/components/TopBigBack/TopBigBack.vue'
 import PhoneNumberInput from '@/components/PhoneNumberInput/PhoneNumberInput.vue'
 import { isPhoneNumber, verifyPassword } from '@/utils/validate'
 import AzInput from '@/components/AzInput/AzInput.vue'
-
+import { register } from '@/api/user'
 // 表单数据
 const formData = ref({
     prefix: '86',
-    phoneNumber: '',
+    phone: '',
     code: '',
     password: '',
     confirmPassword: ''
@@ -96,7 +104,7 @@ const formData = ref({
 
 // 发送验证码
 const sendCode = (fn: any) => {
-    if (!isPhoneNumber(formData.value.phoneNumber)) {
+    if (!isPhoneNumber(formData.value.phone)) {
         showToast('请先输入有效的电话号码！')
         fn(false)
         return
@@ -112,17 +120,47 @@ const verifyConfirmPassword = () => {
 
 // 校验表单反馈
 const onFailed = (errorInfo: any) => {
-    console.log(errorInfo)
     showToast('请先按要求填写表单！')
 }
 
 // 提交表单
 const onSubmit = () => {
-    showToast('表单验证通过！')
+    // showToast('表单验证通过！')
+    const data = {
+        phone: formData.value.phone,
+        code: formData.value.code,
+        password: md5(formData.value.password)
+    }
+    register(data)
+    .then(res => {
+        if (res.code === 200) {
+            showSuccessToast('注册成功！')
+            router.replace({
+                path: '/login'
+            })
+        } else {
+            showFailToast(res.msg)
+        }
+    }, err => {
+        showFailToast(err)
+    })
 }
 </script>
 
 <style lang="scss" scoped>
+.top-back-other{
+    .title {
+        margin-top: 20px;
+        padding-left: 10px;
+        font-size: 16px;
+    }
+    .tips {
+        margin-top: 17px;
+        padding-left: 10px;
+        font-size: 12px;
+        color: #fbfbfb;
+    }
+}
 .register {
     // height: 100vh;
     padding: 20px 0;

@@ -22,17 +22,17 @@ import { ref, computed } from 'vue'
 import i18n from '@/i18n'
 import { Locale } from 'vant'
 import { requireLang, vantLang } from '@/i18n'
-import { appStore } from '@/stores/appStore'
-const store = appStore()
+import { useAppStoreHook } from '@/store/modules/app'
+const appStore = useAppStoreHook()
 const show = ref(false)
 const language = computed(() => {
-    return store.language
+    return appStore.language
 })
 const handleSetLanguage = (lang: string) => {
     i18n.global.locale = lang
     Locale.use(lang, Object.assign(requireLang(lang), vantLang[lang]))
     i18n.global.mergeLocaleMessage(lang, Object.assign(requireLang(lang), vantLang[lang]))
-    store.updateLanguage(lang)
+    appStore.updateLanguage(lang)
     show.value = false
     // console.log(requireLang(lang))
 }

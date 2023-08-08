@@ -1,5 +1,10 @@
 <template>
-    <top-big-back title="登录" />
+    <top-big-back >
+        <div class="top-back-other">
+            <p class="title">登录</p>
+            <p class="tips">欢迎使用啊佐vue3+vite模板</p>
+        </div>
+    </top-big-back>
     <div class="register">
         <div class="tabs">
             <div
@@ -55,6 +60,19 @@ const linkTo = (path:string) => {
 </script>
 
 <style lang="scss" scoped>
+.top-back-other{
+    .title {
+        margin-top: 20px;
+        padding-left: 10px;
+        font-size: 16px;
+    }
+    .tips {
+        margin-top: 17px;
+        padding-left: 10px;
+        font-size: 12px;
+        color: #fbfbfb;
+    }
+}
 .register {
     // height: 100vh;
     padding: 20px 0;
