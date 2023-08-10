@@ -37,10 +37,19 @@ body.limit-width-body {
   box-sizing: border-box;
 }
 
+/** 隐藏滚动条 */
+// html::-webkit-scrollbar,body::-webkit-scrollbar{
+//   width:0px;
+//   height:0px;
+// }
+html,body{
+  height: 100%;
+}
 body{
   color: var(--normal-font-color);
   font-size: var(--normal-font-size);
   background-color: var(--normal-background-color);
+  overflow-x: hidden;
 }
 
 ul,

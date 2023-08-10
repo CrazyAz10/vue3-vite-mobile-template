@@ -1,5 +1,8 @@
 
+import defaultAvatar from '@/assets/images/userPage/user-default-avatar.png'
 export function getImage(pic:string) {
-    console.log(pic)
-    return import.meta.env.PIC_URL + pic
+    if (!pic) {
+        return defaultAvatar
+    }
+    return import.meta.env.VITE_APP_PIC_URL + pic
 }

@@ -32,7 +32,7 @@ const device = computed(() => {
   font-size: var(--normal-font-size);
 
   header {
-    z-index: 9999;
+    z-index: 1000;
     background: var(--normal-background-color);
     box-shadow: 0 5px 5px var(--normal-shadow-color);
   }

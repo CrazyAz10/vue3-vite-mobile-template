@@ -52,8 +52,12 @@
     // 保存操作
     const save = () => {
         updateUserData({name: userName.value})
-        .then(res => {
-            showToast('保存成功')
+        .then((res:any) => {
+            if (res.code === 200) {
+                showToast('保存成功')
+                showBottom.value = false
+                userStore.getUserInfo()
+            }
         })
     }
 

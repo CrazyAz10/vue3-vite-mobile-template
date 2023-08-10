@@ -11,6 +11,18 @@
         <main-menu mode="horizontal" />
       </div>
       <div class="right-nav-bar" v-else>
+        <div class="item" @click="linkTo({path: '/user'})">
+          <van-image
+              round
+              width="100%"
+              height="100%"
+              :src="getImage(userStore.userInfo.avatar)"
+          >
+              <template v-slot:error>
+                  <img src="@/assets/logo.png" alt="" style="width: 100%;height: 100%;">
+              </template>
+          </van-image>
+        </div>
         <div class="item">
           <set-language />
         </div>
@@ -18,53 +30,34 @@
           <set-theme />
         </div>
         <div class="item">
-          <mini-menu />
+          <!-- <mini-menu /> -->
+          <az-menu />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="NavBar">
 import { computed } from 'vue'
 import mainMenu from '@/layout/components/menuBar/mainMenu.vue'
 import miniMenu from '@/layout/components/menuBar/miniMenu.vue'
+import azMenu from '@/layout/components/menuBar/azMenu.vue'
 import SetLanguage from '@/components/SetLanguage/SetLanguage.vue'
 import { useAppStoreHook } from '@/store/modules/app'
-import { useRouter } from 'vue-router'
+import { linkTo } from '@/utils/toolHook'
 import SetTheme from '@/components/SetTheme/SetTheme.vue'
-export default {
-  name: 'NavBar',
-  components: {
-    mainMenu,
-    miniMenu,
-    SetLanguage,
-    SetTheme
-  },
-  setup() {
-    const appStore = useAppStoreHook()
-    /***** computed */
-    // 终端类型
-    const device = computed(() => {
-      return appStore.device
-    })
-    // 迷你菜单展开状态
-    const sliderOpend = computed(() => {
-      return appStore.sidebar.opened
-    })
-    /** computed ****/
-    const router = useRouter()
-    // 路由跳转
-    const linkTo = function (to:any) {
-      router.push(to)
-    }
-    return {
-      device,
-      sliderOpend,
-      linkTo
-    }
-  }
-}
+import { useUserStoreHook } from '@/store/modules/user'
+const userStore = useUserStoreHook()
+import { getImage } from '@/utils/getAssets'
+const appStore = useAppStoreHook()
+
+/***** computed */
+// 终端类型
+const device = computed(() => {
+  return appStore.device
+})
+
 </script>
 
 <style scoped lang="scss">

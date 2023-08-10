@@ -9,7 +9,7 @@ import '@/utils/rem'
 import '@/plugins/wow.ts'
 // import 'wowjs/css/libs/animate.css'
 import 'animate.css'
-import 'animate.css/animate.compat.css'
+// import 'animate.css/animate.compat.css'
 // vant 
 import 'vant/lib/index.css'
 

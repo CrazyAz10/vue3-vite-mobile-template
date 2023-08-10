@@ -1,59 +1,61 @@
 <template>
-    <top-big-back>
-        <div v-if="userStore.token" class="top-back-other user-info">
-            <div class="info">
-                <div class="user-avatar">
-                    <van-image
-                        round
-                        width="100%"
-                        height="100%"
-                        :src="getImage(userStore.userInfo.avatar)"
-                    >
-                        <template v-slot:error>
-                            <img src="@/assets/logo.png" alt="" style="width: 100%;height: 100%;">
-                        </template>
-                    </van-image>
+    <div>
+        <top-big-back>
+            <div v-if="userStore.token" class="top-back-other user-info">
+                <div class="info">
+                    <div class="user-avatar">
+                        <van-image
+                            round
+                            width="100%"
+                            height="100%"
+                            :src="getImage(userStore.userInfo.avatar)"
+                        >
+                            <template v-slot:error>
+                                <img src="@/assets/logo.png" alt="" style="width: 100%;height: 100%;">
+                            </template>
+                        </van-image>
+                    </div>
+                    <!-- <img :src="getImage(userStore.userInfo.avatar)" class="user-avatar" /> -->
+                    <div class="left-chunk">
+                        <p class="title">
+                            {{ userStore.userInfo.name }}
+                        </p>
+                        <p class="tips">欢迎使用啊佐vue3+vite模板</p>
+                    </div>
                 </div>
-                <!-- <img :src="getImage(userStore.userInfo.avatar)" class="user-avatar" /> -->
+                <van-icon name="setting-o" @click="linkTo({path: '/userSetting'})" />
+            </div>
+            <div v-else class="top-back-other">
                 <div class="left-chunk">
                     <p class="title">
-                        {{ userStore.userInfo.name }}
+                        点击 <span @click="linkTo({path: '/login'})">登录</span> 或 <span @click="linkTo({path: '/register'})">注册</span>
                     </p>
                     <p class="tips">欢迎使用啊佐vue3+vite模板</p>
                 </div>
+                <van-icon name="setting-o" @click="linkTo({path: '/userSetting'})" />
             </div>
-            <van-icon name="setting-o" @click="linkTo({path: '/userSetting'})" />
-        </div>
-        <div v-else class="top-back-other">
-            <div class="left-chunk">
-                <p class="title">
-                    点击 <span @click="linkTo({path: '/login'})">登录</span> 或 <span @click="linkTo({path: '/register'})">注册</span>
-                </p>
-                <p class="tips">欢迎使用啊佐vue3+vite模板</p>
-            </div>
-            <van-icon name="setting-o" @click="linkTo({path: '/userSetting'})" />
-        </div>
-    </top-big-back>
-    <div class="user">
-        <div class="item-wrap collect">
-            <div class="item">
-                <div class="left-text">
-                    <p class="title">我的收藏</p>
-                    <p class="tips">My Collection</p>
-                </div>
-                <div class="handle-chunk">
-                    <button @click="linkTo({path: '/userCollection'})">点击查看</button>
+        </top-big-back>
+        <div class="user">
+            <div class="item-wrap collect">
+                <div class="item">
+                    <div class="left-text">
+                        <p class="title">我的收藏</p>
+                        <p class="tips">My Collection</p>
+                    </div>
+                    <div class="handle-chunk">
+                        <button @click="linkTo({path: '/userCollection'})">点击查看</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="item-wrap comment">
-            <div class="item">
-                <div class="left-text">
-                    <p class="title">我的评论</p>
-                    <p class="tips">My Comments</p>
-                </div>
-                <div class="handle-chunk">
-                    <button @click="linkTo({path: '/userComments'})">点击查看</button>
+            <div class="item-wrap comment">
+                <div class="item">
+                    <div class="left-text">
+                        <p class="title">我的评论</p>
+                        <p class="tips">My Comments</p>
+                    </div>
+                    <div class="handle-chunk">
+                        <button @click="linkTo({path: '/userComments'})">点击查看</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,15 +64,11 @@
 
 <script lang="ts" name="UserPage" setup>
 import TopBigBack from '@/components/TopBigBack/TopBigBack.vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+import { linkTo } from '@/utils/toolHook'
 import { useUserStoreHook } from '@/store/modules/user'
 const userStore = useUserStoreHook()
 import { getImage } from '@/utils/getAssets'
-// 跳转
-const linkTo = (to:any) => {
-    router.push(to)
-}
+
 </script>
 
 <style lang="scss" scoped>

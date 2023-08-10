@@ -38,6 +38,7 @@
     import { showToast, showLoadingToast, closeToast } from 'vant'
     import { ref, computed } from 'vue'
     
+    
     import { useUserStoreHook } from '@/store/modules/user'
     const userStore = useUserStoreHook()
 
@@ -84,33 +85,36 @@
       console.log(file)
     }
 
-    const uploadFilePromise = (url) => {
+    const uploadFilePromise = (file) => {
         showLoadingToast('图片上传中')
-        uploadFile({
-            url: `${ import.meta.env.VITE_APP_API_URL }/common/uploadBbsPicVideo`,
-            filePath: url,
-            name: 'file',
-            success: (res) => {
-                closeToast()
-                updateUserData({ avatar: res.fileName })
-            },
-            complete:()=>{
-                showToast('上传图片未知失败！请联系管理员')
-                closeToast()
-            }
+        const formData = new FormData()
+        formData.append('file', file)
+        uploadFile(formData)
+        .then((res) => {
+            closeToast()
+            updateUserData({ avatar: res.fileName })
+            .then((res:any) => {
+                if (res.code === 200) {
+                    showToast('保存成功')
+                    showBottom.value = false
+                    userStore.getUserInfo()
+                }
+            })
+        },
+        ()=>{
+            showToast('上传图片未知失败！请联系管理员')
+            closeToast()
         })
     }
 
     // 开始上传图片
     const save = () => {
-        console.log(fileList.value.length)
-        console.log(fileList.value[0].file)
         if (!fileList.value.length) {
             showToast('请先上传需要更新的头像图片')
             return 
         }
         // 上传头像
-        uploadFilePromise(fileList.value[0].file.url)
+        uploadFilePromise(fileList.value[0].file)
     }
 
 </script>
@@ -119,12 +123,8 @@
 .form {
     padding: 60px 30px;
     text-align: center;
-    :deep .van-uploader__preview{
+    :deep(.van-uploader__preview){
         margin: 0;
-    }
-    :deep .van-uploader {
-        // margin: 0 auto;
-        border-radius: 10px;
     }
     .avatar-wrap{
         margin: 0 auto;

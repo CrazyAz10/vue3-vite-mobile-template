@@ -23,6 +23,16 @@ export const menuRoutes: Array<RouteRecordRaw> = [
           // activeMenu: '/',
           isMenu: true
         }
+      },
+      {
+        path: 'test',
+        name: 'Test',
+        component: () => import('@/views/test/index.vue'),
+        meta: {
+          title: '测试页',
+          // activeMenu: '/',
+          isMenu: true
+        }
       }
     ]
   },

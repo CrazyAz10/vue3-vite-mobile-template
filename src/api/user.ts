@@ -5,12 +5,12 @@ interface loginReqType {
     password?: string,
     phone: string
 }
-// interface testDataType {
-//     code: string,
-//     loginWay: number,
-//     password: string,
-//     phone: string
-// }
+interface modifyPasswordDataType {
+  "code": string,
+  "loginWay": number,
+  "password": string,
+  "phone": string
+}
 
 // 登录
 export function login(data: loginReqType) {
@@ -31,7 +31,10 @@ export function register(data: any) {
 // 上传头像
 export function uploadFile(data: any) {
   return request.post({
-    url: '/user/register',
+    url: '/common/upload',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
     data: data,
   })
 }
@@ -40,6 +43,21 @@ export function uploadFile(data: any) {
 export function updateUserData(data: any) {
   return request.post({
     url: '/user/user/updateUserData',
+    data: data,
+  })
+}
+
+// 获取用户信息
+export function getUserData() {
+  return request.post({
+    url: '/user/user/getUserData'
+  })
+}
+
+// 修改密码
+export function modifyPassword(data: modifyPasswordDataType) {
+  return request.post({
+    url: '/user/user/modifyPassword',
     data: data,
   })
 }

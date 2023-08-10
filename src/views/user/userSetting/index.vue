@@ -1,4 +1,5 @@
 <template>
+<div>
     <top-big-back>
         <div class="top-back-other">
             <div class="left-chunk">
@@ -34,6 +35,7 @@
         <settingAvatar v-model:show="showSettingAvatar" />
         <settingName v-model:show="showSettingName" />
     </div>
+</div>
 </template>
 
 <script lang="ts" name="UserSetting" setup>
@@ -41,17 +43,13 @@ import TopBigBack from '@/components/TopBigBack/TopBigBack.vue'
 import settingAvatar from './components/settingAvatar.vue'
 import settingName from './components/settingName.vue'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+import { linkTo } from '@/utils/toolHook'
 import { useUserStoreHook } from '@/store/modules/user'
 const userStore = useUserStoreHook()
+userStore.getUserInfo()
 import { getImage } from '@/utils/getAssets'
 const showSettingAvatar = ref(false)
 const showSettingName = ref(false)
-// 跳转
-const linkTo = (to:any) => {
-    router.push(to)
-}
 // 设置头像
 const setAvatar = () => {
     showSettingAvatar.value = true

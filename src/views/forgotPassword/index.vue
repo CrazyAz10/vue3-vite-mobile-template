@@ -84,7 +84,11 @@
 
 <script lang="ts" name="ForgotPassword" setup>
 import { ref } from 'vue'
-import { showToast } from 'vant'
+import { showToast, showSuccessToast, showFailToast } from 'vant'
+import { modifyPassword } from '@/api/user'
+import { useUserStoreHook } from '@/store/modules/user'
+import md5 from 'js-md5'
+import { linkTo } from '@/utils/toolHook'
 import TopBigBack from '@/components/TopBigBack/TopBigBack.vue'
 import PhoneNumberInput from '@/components/PhoneNumberInput/PhoneNumberInput.vue'
 import { isPhoneNumber, verifyPassword } from '@/utils/validate'
@@ -117,13 +121,28 @@ const verifyConfirmPassword = () => {
 
 // 校验表单反馈
 const onFailed = (errorInfo: any) => {
-    console.log(errorInfo)
     showToast('请先按要求填写表单！')
 }
 
 // 提交表单
 const onSubmit = () => {
-    showToast('表单验证通过！')
+    const data = {
+        phone: formData.value.phone,
+        code: formData.value.code,
+        password: md5(formData.value.password)
+    }
+    modifyPassword(data)
+    .then((res: any) => {
+        if (res.code === 200) {
+            showSuccessToast('修改密码成功！')
+            useUserStoreHook().removeLoginCache()
+            linkTo({
+                path: '/login'
+            }, true)
+        } else {
+            showFailToast(res.msg)
+        }
+    })
 }
 </script>
 
